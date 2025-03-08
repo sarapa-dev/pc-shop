@@ -1,0 +1,83 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model product {
+  product_id          Int                   @id @default(autoincrement()) @db.UnsignedInt
+  name                String                @db.VarChar(255)
+  category            product_category
+  price               Decimal               @db.Decimal(10, 2)
+  description         String?               @db.Text
+  image_url           String?               @db.VarChar(255)
+  review              review[]
+  transaction_product transaction_product[]
+}
+
+model review {
+  review_id  Int      @id @default(autoincrement()) @db.UnsignedInt
+  user_id    Int      @db.UnsignedInt
+  product_id Int      @db.UnsignedInt
+  rating     Int      @db.UnsignedInt
+  comment    String?  @db.Text
+  created_at DateTime @default(now()) @db.Timestamp(0)
+  product    product  @relation(fields: [product_id], references: [product_id], map: "fk_review_product_id")
+  user       user     @relation(fields: [user_id], references: [user_id], map: "fk_review_user_id")
+
+  @@index([product_id], map: "fk_review_product_id")
+  @@index([user_id], map: "fk_review_user_id")
+}
+
+model transaction {
+  transaction_id      Int                   @id @default(autoincrement()) @db.UnsignedInt
+  user_id             Int                   @db.UnsignedInt
+  total_price         Decimal               @db.Decimal(10, 2)
+  created_at          DateTime              @default(dbgenerated("(now())")) @db.Timestamp(0)
+  user                user                  @relation(fields: [user_id], references: [user_id], map: "fk_transaction_user_id")
+  transaction_product transaction_product[]
+
+  @@index([user_id], map: "fk_transaction_user_id")
+}
+
+model transaction_product {
+  transaction_id Int         @db.UnsignedInt
+  product_id     Int         @db.UnsignedInt
+  quantity       Int         @default(1)
+  product        product     @relation(fields: [product_id], references: [product_id], map: "fk_transaction_product_product_id")
+  transaction    transaction @relation(fields: [transaction_id], references: [transaction_id], map: "fk_transaction_product_transaction_id")
+
+  @@id([transaction_id, product_id])
+  @@index([product_id], map: "fk_transaction_product_product_id")
+}
+
+model user {
+  user_id     Int           @id @default(autoincrement()) @db.UnsignedInt
+  username    String        @unique(map: "uq_user_username") @db.VarChar(50)
+  email       String        @unique(map: "uq_user_email") @db.VarChar(255)
+  password    String        @db.VarChar(255)
+  full_name   String        @db.VarChar(50)
+  balance     Decimal?      @db.Decimal(10, 2)
+  role        user_role     @default(customer)
+  review      review[]
+  transaction transaction[]
+}
+
+enum user_role {
+  customer
+  admin
+}
+
+enum product_category {
+  cpu
+  motherboard
+  gpu
+  ram
+  storage
+  power_supply
+  case
+  cooling
+}
