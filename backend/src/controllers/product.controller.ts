@@ -129,6 +129,7 @@ export const createProduct: RequestHandler<{}, {}, Prisma.productCreateInput> = 
     try {
         if (!name || !price || !category || !description) {
             res.status(400).json({ message: "All fields are required" });
+            return;
         }
 
         const product = await prisma.product.create({
