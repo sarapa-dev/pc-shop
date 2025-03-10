@@ -88,16 +88,16 @@ const ProductsPage = () => {
     <div className="container mx-auto p-6">
       <h1 className="mb-8 text-3xl font-bold">All Products</h1>
 
-      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:flex-wrap">
+      <div className="mb-6 flex flex-col gap-4 sm:flex-row  sm:flex-wrap ">
         <Input
           placeholder="Search by name..."
           value={name || ""}
           onChange={(e) => setName(e.target.value || null)}
-          className="max-w-[200px]"
+          className="w-full sm:max-w-[200px]"
         />
 
         <Select value={category || ""} onValueChange={(value) => setCategory(value || null)}>
-          <SelectTrigger className="max-w-[150px]">
+          <SelectTrigger className="w-full sm:max-w-[150px]">
             <SelectValue placeholder="Select category" />
           </SelectTrigger>
           <SelectContent>
