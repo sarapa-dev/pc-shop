@@ -62,9 +62,18 @@
  ```
 
 ## Website desktop preview:
+🖱️ Click on any preview to open it in full-screen mode. <br />
+❗ Please note that loading these previews may take some time.
+
 ### For unauthenticated users
 ![Image](https://github.com/user-attachments/assets/64a42d41-8b14-4f1e-b4d4-d67c6f16344a)
 ### For authenticated users with role customer
 ![Image](https://github.com/user-attachments/assets/c7246077-b978-49cf-a0df-1ddbd3b566ad)
 ### For authenticated users with role admin
 ![Image](https://github.com/user-attachments/assets/637af479-f0a0-4cae-b1d4-c8535b5eca3f)
+
+
+## Website mobile preview:
+🖱️ Click on mobile preview to open it in full-screen mode. <br />
+❗ Please note that loading these previews may take some time. <br /><br />
+![Image](https://github.com/user-attachments/assets/c1a7f8cc-9ee8-4070-b341-76eb0fa44c6b)
