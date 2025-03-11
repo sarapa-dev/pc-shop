@@ -66,7 +66,7 @@
 ❗ Please note that loading these previews may take some time.
 
 ### For unauthenticated users
-![Image](https://github.com/user-attachments/assets/64a42d41-8b14-4f1e-b4d4-d67c6f16344a)
+![Image](https://github.com/user-attachments/assets/b5e89435-cda6-4476-959b-e0c986b24ba1)
 ### For authenticated users with role customer
 ![Image](https://github.com/user-attachments/assets/c7246077-b978-49cf-a0df-1ddbd3b566ad)
 ### For authenticated users with role admin
